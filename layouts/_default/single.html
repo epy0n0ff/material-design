@@ -8,18 +8,18 @@
       <div class="col s12">
         <div class="card-panel">
           <h4>{{ .Title }}</h4>
-          <p>
+          <p>Categories: 
           {{if .Params.categories }}
             {{ range $index, $category := .Params.categories }}
-              <a href="{{$baseurl}}/categories/{{ $category | urlize }}/">{{ $category }}</a>
+              <a href="{{$baseurl}}/categories/{{ lower . | urlize }}/">{{ $category }}</a>
             {{ end }}
           {{end}} 
           </p>
+          <p>Date: {{ .Date.Format "2006/01/02" }}
           <p>{{ .Content }}</p>
-          <p>{{ .Date.Format "2 Jan 2006" }}
             {{if .Params.tags }}
               {{ range $index, $tag := .Params.tags }}
-                <a href="{{$baseurl}}/tags/{{ $tag | urlize }}/">#{{ $tag }}</a>
+                <a href="{{$baseurl}}/tags/{{ lower . | urlize }}/">#{{ $tag }}</a>
               {{ end }}
             {{end}}
           </p>
